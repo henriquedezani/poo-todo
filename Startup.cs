@@ -14,7 +14,9 @@ namespace TodoList
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            // midlewares:
+            // middlewares:
+
+            // middleware para adicionar tratamento de requisições com controllers e views.
             services.AddControllersWithViews();
         }
 
@@ -30,7 +32,9 @@ namespace TodoList
             app.UseEndpoints(endpoints =>
             {
                 // http://localhost:5001/{controller}/{action}
-                endpoints.MapDefaultControllerRoute();
+                // endpoints.MapDefaultControllerRoute();
+                
+                endpoints.MapControllerRoute("default", "{controller=Todo}/{action=Index}/{id?}");
             });
         }
     }
