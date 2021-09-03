@@ -1,13 +1,38 @@
+@using TodoList.Models
+@model List<Tarefa>
+
 <!DOCTYPE html>
 
 <!-- CABEÇALHO (style.css, javascript.. , metadata) -->
 <head>
     <title>Lista de Tarefas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 </head>
 
 <!-- CORPO DA PÁGINA (O QUE SERÁ EXIBIDO NO NAVEGADOR) -->
 <body>
-    Lista de Tarefas
+    <h1>Lista de Tarefas</h1>
+
+    <table class="table table-hover">
+        <tr>
+            <th>Id</th>
+            <th>Texto</th>
+            <th>Concluida</th>
+        </tr>
+
+        @foreach(var tarefa in Model)
+        {
+            <tr>
+                <td>@tarefa.Id</td>
+                <td>@tarefa.Texto</td>
+                <td>@tarefa.Concluida</td>
+            </tr>
+        }
+
+    </table>
+
+    <button class="btn btn-primary">Adicionar</button>
+
 </body>
 
 </html>

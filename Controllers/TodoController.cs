@@ -1,32 +1,25 @@
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using TodoList.Models;
 
 namespace TodoList.Controllers
-{
-    
+{    
     public class TodoController : Controller
     {
-        // https://localhost:5001/todo/index
-        // https://localhost:5001/[NOME DO CONTROLLER (SEM O TEXTO "CONTROLLER")]/[NOME DO MÉTODO]
+        // /Todo/Index
         public ActionResult Index()
         {
-            // retornará o HTML definido no arquivo Index da pasta Views/Todo
-            // return Views/Todo/Index.cshtml
-            return View();
-        }
+            List<Tarefa> tarefas = new List<Tarefa>();
+            
+            Tarefa tarefa1 = new Tarefa() { Id = 1, Texto = "Estudar prova", Concluida = false};
+            Tarefa tarefa2 = new Tarefa() { Id = 2, Texto = "Tomar vacina", Concluida = false};
+            Tarefa tarefa3 = new Tarefa() { Id = 3, Texto = "Tomar banho", Concluida = false};
 
-        // https://localhost:5001/todo/hello
-        public ActionResult Hello()
-        {
-            // Views/Todo/Oi.cshtml
-            return View("Oi");
+            tarefas.Add(tarefa1);
+            tarefas.Add(tarefa2);
+            tarefas.Add(tarefa3);
+
+            return View(tarefas);
         }
     }
 }
-
-
-// -> View ('Hello World')
-
-
-// http://localhost/todo/index = new TodoController().Index()
-
-// http://localhost/todo/index -> /Views/Todo/Index.cshtml
