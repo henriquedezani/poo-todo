@@ -35,6 +35,12 @@ namespace TodoList.Controllers
             // return View("Index");
             // return View("Index", tarefas);
         }
+
+        // http://localhost:5000/todo/create
+        public ActionResult Create()
+        {
+            return View();
+        }
     }
 }
 

@@ -1,40 +1,30 @@
 @using TodoList.Models
 @model List<Tarefa>
+@{
+    ViewBag.Title = "Lista de Tarefas";
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
 
-<!DOCTYPE html>
+<h1>Lista de Tarefas</h1>
 
-<!-- CABEÇALHO (style.css, javascript.. , metadata) -->
-<head>
-    <title>Lista de Tarefas</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-</head>
+<table class="table table-hover">
+    <tr>
+        <th>Id</th>
+        <th>Texto</th>
+        <th>Concluida</th>
+    </tr>
 
-<!-- CORPO DA PÁGINA (O QUE SERÁ EXIBIDO NO NAVEGADOR) -->
-<body>
-    <h1>Lista de Tarefas</h1>
+    <h1>Você tem @Model.Count tarefas</h1>
 
-    <table class="table table-hover">
+    @foreach(var tarefa in Model)
+    {
         <tr>
-            <th>Id</th>
-            <th>Texto</th>
-            <th>Concluida</th>
+            <td>@tarefa.Id</td>
+            <td>@tarefa.Texto</td>
+            <td>@tarefa.Concluida</td>
         </tr>
+    }
 
-        <h1>Você tem @Model.Count tarefas</h1>
+</table>
 
-        @foreach(var tarefa in Model)
-        {
-            <tr>
-                <td>@tarefa.Id</td>
-                <td>@tarefa.Texto</td>
-                <td>@tarefa.Concluida</td>
-            </tr>
-        }
-
-    </table>
-
-    <button class="btn btn-primary">Adicionar</button>
-
-</body>
-
-</html>
+<a href="/todo/create" class="btn btn-primary">Adicionar</a>
