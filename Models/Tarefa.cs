@@ -9,6 +9,10 @@ namespace TodoList.Models
     }
 }
 
+// Tarefa objeto = new Tarefa();
+// objeto.Id = 1;
+// objeto.Texto = "Passear com  cachorro";
+// objeto.Concluida = false;
 
 /*
 --Exemplo de código no SQL:
@@ -18,4 +22,10 @@ CREATE TABLE Tarefa
     Texto       varchar(200)    not null,
     Concluida   bit             not null        default 0
 )
+*/
+
+/*
+Id      Texto        Concluida
+1       Passear      0
+2       Lavar carro  1
 */
