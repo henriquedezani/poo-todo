@@ -4,4 +4,17 @@
 }
 
 <h1>Create</h1>
-<a href="/todo/index" class="btn btn-primary">Voltar</a>
+
+<div class="container">
+    <form action="/todo/create" method="POST">
+
+        <div class="form-group">
+            <label>Texto</label>
+            <input type="text" name="texto" required="true" class="form-control"/>
+        </div>
+
+        <button class="btn btn-primary">Salvar</button>
+        <a href="/todo/index" class="btn btn-primary">Voltar</a>
+
+    </form>
+</div>
