@@ -1,9 +1,11 @@
+using System;
+
 namespace TodoList.Models
 {
     public class Tarefa
     {
         // propriedades:
-        public int Id { get; set; }
+        public Guid Id { get; set; } 
         public string Texto { get; set; }
         public bool Concluida { get; set; }
     }

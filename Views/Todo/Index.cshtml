@@ -12,6 +12,7 @@
         <th>Id</th>
         <th>Texto</th>
         <th>Concluida</th>
+        <th>&nbsp;</th>
     </tr>
 
     @* <img src='/images/icon.png' /> *@
@@ -23,6 +24,7 @@
             <td>@tarefa.Id</td>
             <td>@tarefa.Texto</td>
             <td>@tarefa.Concluida</td>
+            <td><a href="/todo/delete/@tarefa.Id" class="btn btn-sm btn-danger">Apagar</a></td>
         </tr>
     }
 
