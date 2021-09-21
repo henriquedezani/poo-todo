@@ -26,10 +26,10 @@ namespace TodoList.Controllers
 
         // http://localhost:5000/todo/create
         [HttpPost] // <form method="POST" ...
-        public ActionResult Create(Tarefa tarefa)
+        public ActionResult Create(Tarefa model)
         {
-            tarefa.Id = Guid.NewGuid(); // uuid4 (no npm)
-            tarefas.Add(tarefa);
+            model.Id = Guid.NewGuid(); // uuid4 (no npm)
+            tarefas.Add(model);
             return RedirectToAction("Index"); // HTTP 300
         }
 
@@ -48,6 +48,15 @@ namespace TodoList.Controllers
         {
             var tarefa = tarefas.Single(tarefa => tarefa.Id == id);
             return View(tarefa);
+        }
+
+        [HttpPost]
+        public ActionResult Update(Guid id, Tarefa model)
+        {
+            var tarefa = tarefas.Single(x => x.Id == id);
+            tarefa.Texto = model.Texto;
+            tarefa.Concluida = model.Concluida;
+            return RedirectToAction("Index");
         }
     }
 }

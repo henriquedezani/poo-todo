@@ -1,3 +1,4 @@
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @model TodoList.Models.Tarefa
 
 @{
@@ -8,16 +9,16 @@
 <h1>Update</h1>
 
 <div class="container">
-    <form action="/todo/update" method="POST">
+    <form asp-controller="Todo" asp-action="Update" method="POST">
 
         <div class="form-group">
             <label>Texto</label>
-            <input type="text" name="texto" required="true" value="@Model.Texto" class="form-control"/>
+            <input type="text" required="true" asp-for="Texto" class="form-control"/>
         </div>
 
         <div class="form-group">
             <label>Concluída</label>
-            <input type="checkbox" name="concluida" checked="@Model.Concluida"/>
+            <input type="checkbox" asp-for="Concluida"/>
         </div>
 
         <button class="btn btn-primary">Salvar</button>
