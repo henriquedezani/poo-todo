@@ -4,16 +4,23 @@ using System;
 using System.Collections.Generic;
 using TodoList.Models;
 using System.Linq;
+using TodoList.Repositories;
 
 namespace TodoList.Controllers
 {    
     public class TodoController : Controller
     {
-        private static List<Tarefa> tarefas = new List<Tarefa>();
+        private ITarefaRepository repository;
 
+        public TodoController() 
+        {
+            this.repository = new TarefaMemoryRepository();
+        }
+        
         // http://localhost/Todo/Index = return new TodoController().Index()
         public ActionResult Index()
         {
+            List<Tarefa> tarefas = repository.Read();
             return View(tarefas);
         }
 
@@ -28,8 +35,7 @@ namespace TodoList.Controllers
         [HttpPost] // <form method="POST" ...
         public ActionResult Create(Tarefa model)
         {
-            model.Id = Guid.NewGuid(); // uuid4 (no npm)
-            tarefas.Add(model);
+            repository.Create(model);
             return RedirectToAction("Index"); // HTTP 300
         }
 
@@ -37,25 +43,21 @@ namespace TodoList.Controllers
         [HttpGet]
         public ActionResult Delete(Guid id)
         {
-            var tarefa = tarefas.Single(tarefa => tarefa.Id == id);
-            tarefas.Remove(tarefa);
-
+            repository.Delete(id);
             return RedirectToAction("Index"); // HTTP 300 para o navegador.
         }
 
         [HttpGet]
         public ActionResult Update(Guid id)
         {
-            var tarefa = tarefas.Single(tarefa => tarefa.Id == id);
+            var tarefa = repository.Read(id);
             return View(tarefa);
         }
 
         [HttpPost]
         public ActionResult Update(Guid id, Tarefa model)
-        {
-            var tarefa = tarefas.Single(x => x.Id == id);
-            tarefa.Texto = model.Texto;
-            tarefa.Concluida = model.Concluida;
+        {            
+            repository.Update(id, model);
             return RedirectToAction("Index");
         }
     }

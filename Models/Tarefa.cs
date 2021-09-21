@@ -2,6 +2,8 @@ using System;
 
 namespace TodoList.Models
 {
+    // POCO = Plain Old Object C#
+    
     public class Tarefa
     {
         // propriedades:
