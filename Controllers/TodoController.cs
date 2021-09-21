@@ -12,9 +12,9 @@ namespace TodoList.Controllers
     {
         private ITarefaRepository repository;
 
-        public TodoController() 
+        public TodoController(ITarefaRepository repository) 
         {
-            this.repository = new TarefaMemoryRepository();
+            this.repository = repository;
         }
         
         // http://localhost/Todo/Index = return new TodoController().Index()

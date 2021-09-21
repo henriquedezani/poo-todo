@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using TodoList.Repositories;
 
 namespace TodoList
 {
@@ -15,6 +16,7 @@ namespace TodoList
         public void ConfigureServices(IServiceCollection services)
         {
             // middlewares:
+            services.AddSingleton<ITarefaRepository, TarefaMemoryRepository>();
 
             // middleware para adicionar tratamento de requisições com controllers e views.
             services.AddControllersWithViews();
