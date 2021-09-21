@@ -37,36 +37,17 @@ namespace TodoList.Controllers
         [HttpGet]
         public ActionResult Delete(Guid id)
         {
-            // DELETE FROM Tabelas WHERE id = id...
-
-            // 1. Programação Imperativa
-            // foreach(var tarefa in tarefas) {
-            //     if(tarefa.Id == id) {
-            //         tarefas.Remove(tarefa);
-            //         break;
-            //     }
-            // }
-            
-            // 2. Programação Funcional
-            //var tarefa = tarefas.Where(tarefa => tarefa.Id == id).Single();
-
-            // 3. LinQ SQL
-            // SELECT  * FROM Tarefas t WHERE Id = id;
-            // var tarefa = (from t in tarefas 
-            //                 where t.Id == id
-            //                 select t).Single();
-
             var tarefa = tarefas.Single(tarefa => tarefa.Id == id);
             tarefas.Remove(tarefa);
 
-
-            // SELECT Texto as tarefa FROM Tarefas;
-            // var x = from t in tarefas 
-            //                 where t.Id == id
-            //                 select new {Tarefa = t.Texto};
-
-
             return RedirectToAction("Index"); // HTTP 300 para o navegador.
+        }
+
+        [HttpGet]
+        public ActionResult Update(Guid id)
+        {
+            var tarefa = tarefas.Single(tarefa => tarefa.Id == id);
+            return View(tarefa);
         }
     }
 }

@@ -1,0 +1,27 @@
+@model TodoList.Models.Tarefa
+
+@{
+    ViewBag.Title = "Nova Tarefa";
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Update</h1>
+
+<div class="container">
+    <form action="/todo/update" method="POST">
+
+        <div class="form-group">
+            <label>Texto</label>
+            <input type="text" name="texto" required="true" value="@Model.Texto" class="form-control"/>
+        </div>
+
+        <div class="form-group">
+            <label>Concluída</label>
+            <input type="checkbox" name="concluida" checked="@Model.Concluida"/>
+        </div>
+
+        <button class="btn btn-primary">Salvar</button>
+        <a href="/todo/index" class="btn btn-primary">Voltar</a>
+
+    </form>
+</div>
