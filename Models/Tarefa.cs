@@ -7,7 +7,7 @@ namespace TodoList.Models
     public class Tarefa
     {
         // propriedades:
-        public Guid Id { get; set; } 
+        public int Id { get; set; } 
         public string Texto { get; set; }
         public bool Concluida { get; set; }
     }

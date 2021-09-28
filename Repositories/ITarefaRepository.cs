@@ -9,8 +9,8 @@ namespace TodoList.Repositories
     {
         void Create(Tarefa model);
         List<Tarefa> Read();
-        Tarefa Read(Guid id);
-        void Update(Guid id, Tarefa model);
-        void Delete(Guid id);
+        Tarefa Read(int id);
+        void Update(int id, Tarefa model);
+        void Delete(int id);
     }
 }

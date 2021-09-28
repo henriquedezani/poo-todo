@@ -7,10 +7,10 @@ using System.Data.SqlClient;
 
 namespace TodoList.Repositories
 {
-    public class BDContext
+    public abstract class BDContext
     {
         // Atributo
-        private SqlConnection connection;
+        protected SqlConnection connection;
 
         // Construtor
         public BDContext()
@@ -29,3 +29,4 @@ namespace TodoList.Repositories
 
 
 // var context = new BDContext(); // abrir a conexão.
+// context.Dispose(); // fecha a conexão.

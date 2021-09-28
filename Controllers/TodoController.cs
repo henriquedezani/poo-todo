@@ -41,21 +41,21 @@ namespace TodoList.Controllers
 
         // https://localhost:5001/todo/delete/0942b2f0-e059-41ef-ac6e-4bea56173139
         [HttpGet]
-        public ActionResult Delete(Guid id)
+        public ActionResult Delete(int id)
         {
             repository.Delete(id);
             return RedirectToAction("Index"); // HTTP 300 para o navegador.
         }
 
         [HttpGet]
-        public ActionResult Update(Guid id)
+        public ActionResult Update(int id)
         {
             var tarefa = repository.Read(id);
             return View(tarefa);
         }
 
         [HttpPost]
-        public ActionResult Update(Guid id, Tarefa model)
+        public ActionResult Update(int id, Tarefa model)
         {            
             repository.Update(id, model);
             return RedirectToAction("Index");

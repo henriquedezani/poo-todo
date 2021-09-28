@@ -12,7 +12,7 @@ namespace TodoList.Repositories
 
         public void Create(Tarefa model)
         {
-            model.Id = Guid.NewGuid(); // uuid4 (no npm)
+            model.Id = 0; //Guid.NewGuid(); // uuid4 (no npm)
             tarefas.Add(model);
         }        
 
@@ -21,19 +21,19 @@ namespace TodoList.Repositories
             return tarefas;
         }
 
-        public Tarefa Read(Guid id)
+        public Tarefa Read(int id)
         {
             return tarefas.Single(tarefa => tarefa.Id == id);
         }
 
-        public void Update(Guid id, Tarefa model)
+        public void Update(int id, Tarefa model)
         {
             var tarefa = tarefas.Single(x => x.Id == id);
             tarefa.Texto = model.Texto;
             tarefa.Concluida = model.Concluida;
         }
 
-        public void Delete(Guid id)
+        public void Delete(int id)
         {
             var tarefa = tarefas.Single(tarefa => tarefa.Id == id);
             tarefas.Remove(tarefa);
