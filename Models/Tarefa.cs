@@ -1,5 +1,3 @@
-using System;
-
 namespace TodoList.Models
 {
     // POCO = Plain Old Object C#
@@ -10,6 +8,11 @@ namespace TodoList.Models
         public int Id { get; set; } 
         public string Texto { get; set; }
         public bool Concluida { get; set; }
+        public int IdUsuario { get; set; }
+
+        #region Foreign Key
+        public Usuario Usuario { get; set; }
+        #endregion
     }
 }
 

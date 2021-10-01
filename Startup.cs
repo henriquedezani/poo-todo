@@ -16,7 +16,8 @@ namespace TodoList
         public void ConfigureServices(IServiceCollection services)
         {
             // middlewares:
-            services.AddSingleton<ITarefaRepository, TarefaMemoryRepository>();
+            // services.AddSingleton<ITarefaRepository, TarefaMemoryRepository>();
+            services.AddTransient<ITarefaRepository, TarefaDatabaseRepository>();
 
             // middleware para adicionar tratamento de requisições com controllers e views.
             services.AddControllersWithViews();

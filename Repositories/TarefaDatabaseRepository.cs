@@ -9,65 +9,95 @@ namespace TodoList.Repositories
     {
         public void Create(Tarefa model)
         {
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = connection;
+            try {
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = connection;
 
-            cmd.CommandText = "INSERT INTO Tarefa VALUES (@texto, @concluida)";
+                cmd.CommandText = "INSERT INTO Tarefa VALUES (@texto, @concluida)";
 
-            cmd.Parameters.AddWithValue("@texto", model.Texto);
-            cmd.Parameters.AddWithValue("@concluida", model.Concluida);
+                cmd.Parameters.AddWithValue("@texto", model.Texto);
+                cmd.Parameters.AddWithValue("@concluida", model.Concluida);
 
-            cmd.ExecuteNonQuery();
+                cmd.ExecuteNonQuery();
+
+            }catch(Exception ex) {
+                // Armazenar a exceção em um log.
+            }
+            finally {
+                Dispose();
+            }
         }
 
         public void Delete(int id)
         {
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = connection;
+            try {
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = connection;
 
-            cmd.CommandText = "DELETE FROM Tarefa WHERE Id = @id";
+                cmd.CommandText = "DELETE FROM Tarefa WHERE Id = @id";
 
-            cmd.Parameters.AddWithValue("@id", id);
+                cmd.Parameters.AddWithValue("@id", id);
 
-            cmd.ExecuteNonQuery();
+                cmd.ExecuteNonQuery();
+            }catch(Exception ex) {
+                // Armazenar a exceção em um log.
+            }
+            finally {
+                Dispose();
+            }
         }
 
         public void Update(int id, Tarefa model)
         {
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = connection;
+            try {
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = connection;
 
-            cmd.CommandText = "UPDATE Tarefa SET Texto = @texto, Concluida = @concluida WHERE Id = @id";
+                cmd.CommandText = "UPDATE Tarefa SET Texto = @texto, Concluida = @concluida WHERE Id = @id";
 
-            cmd.Parameters.AddWithValue("@texto", model.Texto);
-            cmd.Parameters.AddWithValue("@concluida", model.Concluida);
-            cmd.Parameters.AddWithValue("@id", id);
+                cmd.Parameters.AddWithValue("@texto", model.Texto);
+                cmd.Parameters.AddWithValue("@concluida", model.Concluida);
+                cmd.Parameters.AddWithValue("@id", id);
 
-            cmd.ExecuteNonQuery();
+                cmd.ExecuteNonQuery();
+            }catch(Exception ex) {
+                // Armazenar a exceção em um log.
+            }
+            finally {
+                Dispose();
+            }
         }
 
         public List<Tarefa> Read()
         {
-            List<Tarefa> lista = new List<Tarefa>();
+            try {
+                List<Tarefa> lista = new List<Tarefa>();
 
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = connection;
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = connection;
 
-            cmd.CommandText = "SELECT Id, Texto, Concluida FROM Tarefa";
+                cmd.CommandText = "SELECT Id, Texto, Concluida FROM Tarefa";
 
-            SqlDataReader reader = cmd.ExecuteReader();
-            
-            while(reader.Read()) 
-            {
-                Tarefa tarefa = new Tarefa();
-                tarefa.Id = reader.GetInt32(0);
-                tarefa.Texto = reader.GetString(1);
-                tarefa.Concluida = reader.GetBoolean(2);
+                SqlDataReader reader = cmd.ExecuteReader();
+                
+                while(reader.Read()) 
+                {
+                    Tarefa tarefa = new Tarefa();
+                    tarefa.Id = reader.GetInt32(0);
+                    tarefa.Texto = reader.GetString(1);
+                    tarefa.Concluida = reader.GetBoolean(2);
 
-                lista.Add(tarefa);
+                    lista.Add(tarefa);
+                }
+
+                return lista;
+            }catch(Exception ex) {
+                // Armazenar a exceção em um log.
+                throw new Exception(ex.Message);
             }
-
-            return lista;
+            finally {
+                Dispose();
+            }
         }
 
         public Tarefa Read(int id)
@@ -99,6 +129,9 @@ namespace TodoList.Repositories
             catch(Exception ex) 
             {
                 throw new Exception("Tarefa não encontrada.");
+            }
+            finally {
+                Dispose();
             }
         }       
     }

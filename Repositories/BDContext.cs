@@ -1,3 +1,4 @@
+using System;
 using System.Data.SqlClient; 
 
 // 3 classes principais do namespace SqlClient:
@@ -15,14 +16,16 @@ namespace TodoList.Repositories
         // Construtor
         public BDContext()
         {
-            var strConnection = "Data Source = localhost; Integrated Security = True; Initial Catalog = BDTodo";
+            var strConnection = "Data Source = localhost; Integrated Security = False; User=sa; Password=A1b2c3d4e5!; Initial Catalog = BDTodo";
             connection = new SqlConnection(strConnection);
             connection.Open();
+            Console.WriteLine("Abri a conexão");
         }
 
         public void Dispose()
         {
             connection.Close();
+            Console.WriteLine("Fechei a conexão");
         }
     }
 }
