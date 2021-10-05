@@ -24,6 +24,8 @@ CREATE TABLE Usuario
     Senha       varchar(100)    not null
 )
 
+ALTER TABLE Tarefa ADD IdUsuario int references Usuario (Id)
+
 -- INSERÇÃO DOS DADOS INICIAIS:
 INSERT INTO Tarefa VALUES ('Estudar para a prova', 0)
 INSERT INTO Tarefa VALUES ('Passear com o cachorro', 1)
@@ -36,3 +38,5 @@ INSERT INTO Usuario VALUES ('Andre Luis da Silva', 'andre@fatec.br', '123456')
 SELECT * FROM Tarefa
 
 SELECT * FROM Usuario
+
+DELETE Usuario WHERE Id = 1
