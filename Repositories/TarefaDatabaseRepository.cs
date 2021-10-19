@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using TodoList.Models;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace TodoList.Repositories
 {
@@ -13,15 +14,19 @@ namespace TodoList.Repositories
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = connection;
 
-                cmd.CommandText = "INSERT INTO Tarefa VALUES (@texto, @concluida)";
+                // cmd.CommandText = "EXEC CREATE_TAREFA @texto, @idUsuario";
+
+                cmd.CommandText = "CREATE_TAREFA";
+                cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@texto", model.Texto);
-                cmd.Parameters.AddWithValue("@concluida", model.Concluida);
+                cmd.Parameters.AddWithValue("@idusuario", 2);
 
                 cmd.ExecuteNonQuery();
 
             }catch(Exception ex) {
                 // Armazenar a exceção em um log.
+                Console.WriteLine(ex.Message);
             }
             finally {
                 Dispose();
@@ -76,7 +81,7 @@ namespace TodoList.Repositories
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = connection;
 
-                cmd.CommandText = "SELECT Id, Texto, Concluida FROM Tarefa";
+                cmd.CommandText = "SELECT Id, Texto, Concluida, Usuario FROM ViewTarefa";
 
                 SqlDataReader reader = cmd.ExecuteReader();
                 
@@ -86,6 +91,9 @@ namespace TodoList.Repositories
                     tarefa.Id = reader.GetInt32(0);
                     tarefa.Texto = reader.GetString(1);
                     tarefa.Concluida = reader.GetBoolean(2);
+                    tarefa.Usuario = new Usuario {
+                        Nome = reader.GetString(3)
+                    };
 
                     lista.Add(tarefa);
                 }

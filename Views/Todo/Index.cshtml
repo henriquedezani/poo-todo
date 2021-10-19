@@ -12,6 +12,7 @@
         <th>Id</th>
         <th>Texto</th>
         <th>Concluida</th>
+        <th>Usuário</th>
         <th>&nbsp;</th>
     </tr>
 
@@ -23,7 +24,8 @@
         <tr>
             <td>@tarefa.Id</td>
             <td>@tarefa.Texto</td>
-            <td>@tarefa.Concluida</td>
+            <td>@tarefa.TextoConcluida</td>
+            <td>@tarefa.Usuario.Nome</td>
             <td>
                 <a href="/todo/delete/@tarefa.Id" class="btn btn-sm btn-danger">Apagar</a>
                 <a href="/todo/update/@tarefa.Id" class="btn btn-sm btn-primary">Editar</a>

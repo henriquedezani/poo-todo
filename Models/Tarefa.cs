@@ -1,14 +1,15 @@
 namespace TodoList.Models
 {
     // POCO = Plain Old Object C#
-    
+
     public class Tarefa
     {
         // propriedades:
-        public int Id { get; set; } 
+        public int Id { get; set; }
         public string Texto { get; set; }
         public bool Concluida { get; set; }
         public int IdUsuario { get; set; }
+        public string TextoConcluida => Concluida ? "Concluída" : "Não Concluída";
 
         #region Foreign Key
         public Usuario Usuario { get; set; }

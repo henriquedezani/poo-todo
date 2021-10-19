@@ -22,13 +22,14 @@ CREATE TABLE Usuario
     Nome        varchar(100)    not null,
     Email       varchar(100)    not null        unique,
     Senha       varchar(100)    not null
+    
 )
 
-ALTER TABLE Tarefa ADD IdUsuario int references Usuario (Id)
+ALTER TABLE Tarefa ADD IdUsuario int references Usuario (Id) -- ON DELETE SET NULL
 
 -- INSERÇÃO DOS DADOS INICIAIS:
-INSERT INTO Tarefa VALUES ('Estudar para a prova', 0)
-INSERT INTO Tarefa VALUES ('Passear com o cachorro', 1)
+INSERT INTO Tarefa VALUES ('Estudar para a prova', 0, 1)
+INSERT INTO Tarefa VALUES ('Passear com o cachorro', 1, 2)
 
 INSERT INTO Usuario VALUES ('Diego Aparecido Armindo', 'diego@fatec.br', '123456')
 INSERT INTO Usuario VALUES ('Thamiris Sayuri Higashiharaguti', 'thamiris@fatec.br', '123456')
@@ -39,4 +40,17 @@ SELECT * FROM Tarefa
 
 SELECT * FROM Usuario
 
-DELETE Usuario WHERE Id = 1
+CREATE VIEW ViewTarefa AS
+    SELECT Tarefa.Id, Tarefa.Texto, Tarefa.Concluida, Usuario.Nome as Usuario
+        FROM Tarefa, Usuario
+        WHERE Tarefa.IdUsuario = Usuario.Id
+
+SELECT * FROM ViewTarefa
+
+CREATE PROCEDURE CREATE_TAREFA (
+    @texto varchar(200),
+    @idusuario int
+) AS BEGIN
+    INSERT INTO Tarefa VALUES (@texto, 0, @idusuario)
+END
+

@@ -39,7 +39,7 @@ namespace TodoList
                 // http://localhost:5001/{controller}/{action}
                 // endpoints.MapDefaultControllerRoute();
                 
-                endpoints.MapControllerRoute("default", "{controller=Usuario}/{action=Login}/{id?}");
+                endpoints.MapControllerRoute("default", "{controller=Todo}/{action=Index}/{id?}");
             });
         }
     }
