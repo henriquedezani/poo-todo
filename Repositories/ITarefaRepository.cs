@@ -8,7 +8,7 @@ namespace TodoList.Repositories
     public interface ITarefaRepository
     {
         void Create(Tarefa model);
-        List<Tarefa> Read();
+        List<Tarefa> ReadAll(int id);
         Tarefa Read(int id);
         void Update(int id, Tarefa model);
         void Delete(int id);

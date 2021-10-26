@@ -41,7 +41,7 @@ SELECT * FROM Tarefa
 SELECT * FROM Usuario
 
 CREATE VIEW ViewTarefa AS
-    SELECT Tarefa.Id, Tarefa.Texto, Tarefa.Concluida, Usuario.Nome as Usuario
+    SELECT Tarefa.Id, Tarefa.Texto, Tarefa.Concluida, Usuario.Nome as Nome, Usuario.Id as UsuarioId
         FROM Tarefa, Usuario
         WHERE Tarefa.IdUsuario = Usuario.Id
 

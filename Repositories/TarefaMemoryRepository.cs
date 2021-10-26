@@ -16,7 +16,7 @@ namespace TodoList.Repositories
             tarefas.Add(model);
         }        
 
-        public List<Tarefa> Read()
+        public List<Tarefa> ReadAll(int id)
         {
             return tarefas;
         }

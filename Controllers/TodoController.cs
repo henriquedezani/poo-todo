@@ -20,7 +20,12 @@ namespace TodoList.Controllers
         // http://localhost/Todo/Index = return new TodoController().Index()
         public ActionResult Index()
         {
-            List<Tarefa> tarefas = repository.Read();
+            var id = HttpContext.Session.GetInt32("id");
+            
+            if(id == null)
+                return RedirectToAction("Login", "Usuario");
+
+            List<Tarefa> tarefas = repository.ReadAll((int)id);
             return View(tarefas);
         }
 

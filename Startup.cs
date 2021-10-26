@@ -17,8 +17,15 @@ namespace TodoList
         {
             // middlewares:
             // services.AddSingleton<ITarefaRepository, TarefaMemoryRepository>();
-            services.AddTransient<ITarefaRepository, TarefaDatabaseRepository>();
-            // services.AddTransient<IUsuarioRepository, UsuarioDatabaseRepository>();
+            services.AddTransient<ITarefaRepository, TarefaRepository>();
+            services.AddTransient<IUsuarioRepository, UsuarioRepository>();
+
+            services.AddSession(options =>
+                {
+                    options.IdleTimeout = TimeSpan.FromSeconds(3600);
+                    options.Cookie.HttpOnly = true;
+                    options.Cookie.IsEssential = true;
+                });
 
             // middleware para adicionar tratamento de requisições com controllers e views.
             services.AddControllersWithViews();
@@ -34,12 +41,14 @@ namespace TodoList
             app.UseRouting();
             app.UseStaticFiles();
 
+            app.UseSession();
+
             app.UseEndpoints(endpoints =>
             {
                 // http://localhost:5001/{controller}/{action}
                 // endpoints.MapDefaultControllerRoute();
-                
-                endpoints.MapControllerRoute("default", "{controller=Todo}/{action=Index}/{id?}");
+
+                endpoints.MapControllerRoute("default", "{controller=Usuario}/{action=Login}/{id?}");
             });
         }
     }

@@ -6,7 +6,7 @@ using System.Data;
 
 namespace TodoList.Repositories
 {
-    public class TarefaDatabaseRepository : BDContext, ITarefaRepository
+    public class TarefaRepository : BDContext, ITarefaRepository
     {
         public void Create(Tarefa model)
         {
@@ -73,7 +73,7 @@ namespace TodoList.Repositories
             }
         }
 
-        public List<Tarefa> Read()
+        public List<Tarefa> ReadAll(int id)
         {
             try {
                 List<Tarefa> lista = new List<Tarefa>();
@@ -81,7 +81,9 @@ namespace TodoList.Repositories
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = connection;
 
-                cmd.CommandText = "SELECT Id, Texto, Concluida, Usuario FROM ViewTarefa";
+                cmd.CommandText = "SELECT Id, Texto, Concluida, Nome, UsuarioId FROM ViewTarefa WHERE UsuarioId = @id";
+
+                cmd.Parameters.AddWithValue("@id", id);
 
                 SqlDataReader reader = cmd.ExecuteReader();
                 
